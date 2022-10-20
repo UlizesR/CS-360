@@ -1,0 +1,15 @@
+Test: Test.o easyppm.o object.o Tuple.o
+	g++ -o Test Test.o easyppm.o object.o Tuple.o
+
+Test.o: Test.cpp
+	g++ -c Test.cpp -o Test.o
+
+easyppm.o: easyppm.c easyppm.h
+	g++ -c easyppm.c -o easyppm.o
+
+object.o: object.cpp object.h
+	g++ -c object.cpp -o object.o
+
+Tuple.o: Tuple.cpp Tuple.h
+	g++ -c Tuple.cpp -o Tuple.o
+	

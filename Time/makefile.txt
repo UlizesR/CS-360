@@ -1,0 +1,9 @@
+Main: Main.o Time.o 
+	g++ -o Maina Main.o Time.o
+
+Main.o: Main.cpp 
+	g++ -c Main.cpp -o Main.o
+
+Time.o: Time.cpp Time.h
+	g++ -c Time.cpp -o Time.o
+

@@ -1,0 +1,8 @@
+test: test.obj easyppm.obj
+	link /out:test.exe test.obj easyppm.obj
+
+test.obj: test.c easyppm.h
+	cl /c test.c
+	
+easyppm.obj: easyppm.c easyppm.h
+	cl /c easyppm.c

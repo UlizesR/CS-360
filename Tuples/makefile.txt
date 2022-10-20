@@ -1,0 +1,9 @@
+TestMain: TestMain.o Tuple.o 
+	g++ -o TestMain TestMain.o Tuple.o
+
+TestMain.o: TestMain.cpp 
+	g++ -c TestMain.cpp -o TestMain.o
+
+Tuple.o: Tuple.cpp Tuple.h
+	g++ -c Tuple.cpp -o Tuple.o
+

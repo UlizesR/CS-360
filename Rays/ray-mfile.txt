@@ -1,0 +1,14 @@
+RayMain: RayMain.o easyppm.o ray.o Tuple.o
+	g++ -o RayMain RayMain.o easyppm.o ray.o Tuple.o
+
+RayMain.o: RayMain.cpp 
+	g++ -c RayMain.cpp -o RayMain.o
+	
+easyppm.o: easyppm.c easyppm.h
+	g++ -c easyppm.c -o easyppm.o
+
+ray.o: ray.cpp ray.h
+	g++ -c ray.cpp -o ray.o
+
+Tuple.o: Tuple.cpp Tuple.h
+	g++ -c Tuple.cpp -o Tuple.o

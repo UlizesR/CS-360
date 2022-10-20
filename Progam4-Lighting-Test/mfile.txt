@@ -1,0 +1,14 @@
+Test: LightUnitTest.o Tuple.o Lighting.o Rgb.o
+	g++ -o Test LightUnitTest.o Tuple.o Lighting.o Rgb.o
+
+LightUnitTest.o: LightUnitTest.cpp
+	g++ -c LightUnitTest.cpp -o LightUnitTest.o
+
+Tuple.o: Tuple.cpp Tuple.h
+	g++ -c Tuple.cpp -o Tuple.o
+
+Lighting.o: Lighting.cpp Lighting.h
+	g++ -c Lighting.cpp -o Lighting.o
+
+Rgb.o: Rgb.cpp Rgb.h
+	g++ -c Rgb.cpp -o Rgb.o

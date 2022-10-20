@@ -1,0 +1,8 @@
+test: test.o easyppm.o
+	g++ -o test test.o easyppm.o
+
+test.o: test.c easyppm.h
+	g++ -c test.c -o test.o
+	
+easyppm.o: easyppm.c easyppm.h
+	g++ -c easyppm.c -o easyppm.o
