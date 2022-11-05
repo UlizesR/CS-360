@@ -1,8 +1,8 @@
-Main: Main.o easyppm.o object.o Tuple.o
-	g++ -o Main Main.o easyppm.o object.o Tuple.o
+Test: Test.o easyppm.o object.o Tuple.o
+	g++ -o Test Test.o easyppm.o object.o Tuple.o
 
-Main.o: Main.cpp
-	g++ -c Main.cpp -o Main.o
+Test.o: Test.cpp
+	g++ -c Test.cpp -o Test.o
 
 easyppm.o: easyppm.c easyppm.h
 	g++ -c easyppm.c -o easyppm.o
