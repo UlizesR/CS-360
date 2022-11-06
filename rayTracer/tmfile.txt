@@ -1,5 +1,5 @@
-Test: Test.o easyppm.o object.o Tuple.o
-	g++ -o Test Test.o easyppm.o object.o Tuple.o
+Test: Test.o easyppm.o objects.o Tuple.o colors.o
+	g++ -o Test Test.o easyppm.o objects.o Tuple.o colors.o
 
 Test.o: Test.cpp
 	g++ -c Test.cpp -o Test.o
@@ -7,9 +7,11 @@ Test.o: Test.cpp
 easyppm.o: easyppm.c easyppm.h
 	g++ -c easyppm.c -o easyppm.o
 
-object.o: object.cpp object.h
-	g++ -c object.cpp -o object.o
+objects.o: objects.cpp objects.h
+	g++ -c objects.cpp -o objects.o
 
 Tuple.o: Tuple.cpp Tuple.h
 	g++ -c Tuple.cpp -o Tuple.o
-	
+
+colors.o: colors.cpp colors.o
+	g++ -c colors.cpp -o colors.o
