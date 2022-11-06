@@ -36,26 +36,18 @@ float ComputeLighting(vector<Light> light_list, int num_lights, Tuple point, Tup
 {
     float intensity = 0;
     Tuple L;
-    for (int i = 0; i < num_lights; i++)
-    {
-        if (light_list[i].type == "Ambient")
-        {
+    for (int i = 0; i < num_lights; i++) {
+        if (light_list[i].type == "Ambient") {
             intensity += light_list[i].intensity;
         }
-        else
-        {
-            if (light_list[i].type == "point")
-            {
+        else {
+            if (light_list[i].type == "Point") {
                 L = light_list[i].position - point;
             }
-            else
-            {
+            else {
                 L = light_list[i].direction;
             }
-            // Shadow
-
-
-            // Diffuse 
+             // Diffuse 
             float N_dot_L = normal.dot(L);
             if (N_dot_L > 0)
             {
@@ -63,10 +55,10 @@ float ComputeLighting(vector<Light> light_list, int num_lights, Tuple point, Tup
             }
             // Specular
             if (specular != -1) {
-                Tuple R = 2 * normal * normal.dot(L) - L;
+                Tuple R = 2 * normal * N_dot_L - L;
                 float R_dot_D = R.dot(direction);
-            if (R_dot_D > 0) {
-                intensity += light_list[i].intensity * pow(R_dot_D / (R.magnitude() * direction.magnitude()), specular);
+                if (R_dot_D > 0) {
+                    intensity += light_list[i].intensity * pow(R_dot_D / (R.magnitude() * direction.magnitude()), specular);
                 }
             }
         }
@@ -74,16 +66,37 @@ float ComputeLighting(vector<Light> light_list, int num_lights, Tuple point, Tup
     return intensity;
 }
 
-ppmcolor TraceRay(vector<Object> obj_list, vector<Light> light_list, int num_objs, int num_lights, Tuple rayOrigin, Tuple rayDirection, float t_min, float t_max)
-{
+ppmcolor TraceRay(vector<Object> obj_list, vector<Light> light_list, int num_objs, int num_lights, Tuple rayOrigin, Tuple rayDirection, float t_min, float t_max) {
     float closest_t = INFINITY;
     Object *closest_obj = NULL;
     float t_arr[2];
 
-    if (closest_obj == NULL)
-    {
+    for (int i = 0; i < num_objs; i++) {
+        if (obj_list[i].OBJ_ID == 1) {
+            Intersect(obj_list[i], rayOrigin, rayDirection, t_arr);
+            float t1 = t_arr[0];
+            float t2 = t_arr[1];
+            if (t_min <= t1 && t1 <= t_max && t1 <= closest_t) {
+                closest_t = t1;
+                closest_obj = &obj_list[i];
+            }
+            if (t_min <= t2 && t2 <= t_max && t2 <= closest_t) {
+                closest_t = t2;
+                closest_obj = &obj_list[i];
+            }
+        } else {
+            Intersect(obj_list[i], rayOrigin, rayDirection, t_arr);
+            float t = t_arr[0];
+            if ((t_min <= t && t <= t_max && t <= closest_t)) {
+                closest_t = t;
+                closest_obj = &obj_list[i];
+            }
+        }
+    }
+    if (closest_obj == NULL) {
         return white;
     }
+
     closest_obj->point = rayOrigin + closest_t * rayDirection;
     Tuple Normal = closest_obj->Normal();
     float intensity = ComputeLighting(light_list, num_lights, closest_obj->point, Normal, -1 * rayDirection, closest_obj->specular);
@@ -156,7 +169,7 @@ int main() {
         }
     }
 
-    easyppm_write(&myImage, "ray_trace2.ppm");
+    easyppm_write(&myImage, "ray_trace3.ppm");
     easyppm_destroy(&myImage);
 
     // Return error code of 0 to operating system to signal successful exit.
