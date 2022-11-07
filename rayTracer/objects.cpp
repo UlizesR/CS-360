@@ -11,6 +11,7 @@ Tuple Object::Normal() {
     return Normal;
 }
 
+
 Sphere::Sphere(Tuple position, ppmcolor color, float radius, int specular) {
     this->OBJ_ID = 1;
     this->position = position;

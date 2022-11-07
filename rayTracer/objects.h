@@ -9,7 +9,6 @@ class Object {
         Tuple point;
         int OBJ_ID;
         float radius;
-        float t;
         int specular;
         ppmcolor color;
 
@@ -49,3 +48,4 @@ class PointLight : public Light {
     public:
         PointLight(Tuple position, float intensity);
 };
+

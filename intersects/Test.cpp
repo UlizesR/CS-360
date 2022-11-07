@@ -20,7 +20,7 @@ int main()
     objectsInMySceneList.push_back(S1);
     num_objects++;
 
-    Object *P = new Plane(2, Tuple(0, 0, 10, 1), easyppm_rgb(231, 0, 114), Tuple(-1, 0, 1), 0);
+    Object *P = new Plane(2, Tuple(0, 0, 10, 1), easyppm_rgb(231, 0, 114), Tuple(0, 1, 1), 0);
     objectsInMySceneList.push_back(P);
     num_objects++;
 
